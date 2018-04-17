@@ -128,12 +128,12 @@ include 'database.php';
                 
 
 
-                echo "query: $query <br/>"; 
-                echo "category: $category <br/>"; 
-                echo "priceFrom: $priceFrom <br/>"; 
-                echo "priceTo: $priceTo <br/>"; 
-                echo "ordering: $ordering <br/>"; 
-                echo "showImages: $showImages <br/>"; 
+                // echo "query: $query <br/>"; 
+                // echo "category: $category <br/>"; 
+                // echo "priceFrom: $priceFrom <br/>"; 
+                // echo "priceTo: $priceTo <br/>"; 
+                // echo "ordering: $ordering <br/>"; 
+                // echo "showImages: $showImages <br/>"; 
                 displayResults();
                 print_r($item);
             ?>
