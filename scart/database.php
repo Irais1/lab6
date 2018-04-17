@@ -126,4 +126,5 @@ function getMatchingItems($query, $category, $priceFrom, $priceTo, $ordering, $s
 //addCategoriesForItems(73,82,6);
 
 // insertItemIntoDB();
+
 ?>
