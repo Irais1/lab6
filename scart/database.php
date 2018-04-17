@@ -82,12 +82,37 @@ function getMatchingItems($query, $category, $priceFrom, $priceTo, $ordering, $s
     
     //$sql = "SELECT * FROM item WHERE name LIKE '%$query%'"; 
    // $sql = "SELECT * FROM item WHERE 1"; 
-   $sql = "SELECT item.item_id,item.name,item.price,item.image_url FROM item INNER JOIN item_category ON item.item_id = item_category.item_id INNER JOIN catagory ON item_category.category_id = catagory.category_id WHERE 1";
+   //$sql =  "SELECT DISTINCT item.item_id, item.name, item.price, item.image_url FROM item INNER JOIN item_category ON item.item_id = item_category.item_id INNER JOIN category ON item_category.category_id =category.category_id  WHERE 1"; 
   
      if (!empty($query)) {
-        $sql .= " AND name LIKE '%$query%'";
+        $sql .= " AND item.name LIKE '%$query%'";
     }
-     
+     if (!empty($category)) {
+        $sql .= " AND category.category_name = '$category'";
+    }
+     if (!empty($priceFrom)) {
+        $sql .= " AND item.price >= '$priceFrom'";
+    }
+     if (!empty($priceTo)) {
+        $sql .= " AND item.price >= '$priceTo'";
+    }
+    if (!empty($ordering)) {
+        if ($ordering == 'product') {
+            $columnName = 'item.name'; 
+        } else {
+            $columnName = 'item.price'; 
+        }
+       
+        $sql .= " ORDER BY $columnName";
+    }
+    $imgSQL = $showImages ? ', item.image_url' : ''; 
+    
+     $sql = "SELECT DISTINCT item.item_id, item.name, item.price $imgSQL FROM item INNER JOIN item_category ON item.item_id = item_category.item_id INNER JOIN category ON item_category.category_id =category.category_id  WHERE 1"; 
+
+
+
+
+
  
     $statement = $db->prepare($sql); 
     

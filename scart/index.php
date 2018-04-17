@@ -80,6 +80,7 @@ include 'database.php';
                 $newItem['id'] = $_POST['itemId'];
                 $newItem['price'] = $_POST['itemPrice'];
                 $newItem['image'] = $_POST['itemImage'];
+            }
                 
             foreach ($_SESSION['cart'] as &$item) {
                 if($newItem['id'] == $item['id']){
@@ -94,41 +95,38 @@ include 'database.php';
                 array_push($_SESSION['cart'],$newItem);
                 
             }
-            }
             
+            if(isset($_GET['query'])){
+                $items = getMatchingItems($_GET['query'],$_GET['category'],$_GET['priceFrom'],$_GET['priceTo'],$_GET['ordering'],$_GET['showImages']);
+            }
+            print_r($_GET);
+            //  if (!empty($category)) {
+            //      $sql .= " AND category.category_name = '$category'";
+                 
+            //  }
 
-            // if(isset($_GET['query'])){
-            //     //include 'wmapi.php';
-            //     //$items = getProducts($_GET['query']);
-            //     $items = getMatchingItems($_GET['query']);
-            //     //insertItemsIntoDB($items);
-            //     getMatchingItems($_GET['query']);
-            // }
-            //Checking
-            //   if (isset($_GET["category"]) && !empty($_GET["category"])) {
-            //         $category = $_GET["category"]; 
-            //     }
-                
-            //     if (isset($_GET["price-from"]) && !empty($_GET["price-from"])) {
-            //         $priceFrom =  $_GET["price-from"]; 
-            //     }
-                
-            //     if (isset($_GET["price-to"]) && !empty($_GET["price-to"])) {
-            //         $priceTo = $_GET["price-to"];
-            //     }
-                
-            //     if (isset($_GET["ordering"]) && !empty($_GET["ordering"])) {
-            //         $ordering = $_GET["ordering"];
-            //     }
-                
-            //     if (isset($_GET["show-images"]) && !empty($_GET["show-images"])) {
-            //         $showImages = $_GET["show-images"];
-            //     }
-                 if (isset($_GET['search-submitted'])) {
-                    // form was submitted 
-                    $items = getMatchingItems($query, $catagory,$priceFrom,$priceTo,$ordering,$showImages);
+
+             if (isset($_GET["category"]) && !empty($_GET["category"])) {
+                    $category = $_GET["category"]; 
                 }
-                $catagory = "";
+                
+                if (isset($_GET["price-from"]) && !empty($_GET["price-from"])) {
+                    $priceFrom =  $_GET["price-from"]; 
+                }
+                
+                if (isset($_GET["price-to"]) && !empty($_GET["price-to"])) {
+                    $priceTo = $_GET["price-to"];
+                }
+                
+                if (isset($_GET["ordering"]) && !empty($_GET["ordering"])) {
+                    $ordering = $_GET["ordering"];
+                }
+                
+                if (isset($_GET["show-images"]) && !empty($_GET["show-images"])) {
+                    $showImages = $_GET["show-images"];
+                }
+                
+
 
                 echo "query: $query <br/>"; 
                 echo "category: $category <br/>"; 
@@ -136,11 +134,8 @@ include 'database.php';
                 echo "priceTo: $priceTo <br/>"; 
                 echo "ordering: $ordering <br/>"; 
                 echo "showImages: $showImages <br/>"; 
-
-
-            ?>
-            <?php
-            displayResults();
+                displayResults();
+                print_r($item);
             ?>
         </div>
     </div>

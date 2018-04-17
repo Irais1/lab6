@@ -2,6 +2,9 @@
 function displayResults(){
     //access the global $items array
     global $items;
+        // if ($itemImage)
+        //         echo "<input type='hidden' name='itemImage' value='$itemImage'>"; 
+
     if(isset($items)){
         echo "<table class = 'table'>";
         foreach($items as $item){
@@ -12,7 +15,7 @@ function displayResults(){
             
             //Display items as table row
             echo'<tr>';
-            echo "<td><img src = '$itemImage'></td>";
+            echo "<td><img src = $itemImage></td>";
             echo "<td><h4>$itemName</h4></td>";
             echo "<td><h4>$itemPrice</h4><td>";
             
@@ -20,7 +23,9 @@ function displayResults(){
             echo "<form method='post'>";
             echo "<input type = 'hidden' name = 'itemName' value = '$itemName'>";
             echo "<input type = 'hidden' name = 'itemId' value = '$itemId'>";
+            if($itemImage){
             echo "<input type = 'hidden' name = 'itemImage' value = '$itemImage'>";
+            }
             echo "<input type = 'hidden' name = 'itemPrice' value = '$itemPrice'>";
             
             if($_POST['itemId'] == $itemId){
