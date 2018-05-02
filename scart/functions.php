@@ -2,8 +2,8 @@
 function displayResults(){
     //access the global $items array
     global $items;
-        // if ($itemImage)
-        //         echo "<input type='hidden' name='itemImage' value='$itemImage'>"; 
+         if ($itemImage)
+                 echo "<input type='hidden' name='itemImage' value='$itemImage'>"; 
 
     if(isset($items)){
         echo "<table class = 'table'>";
