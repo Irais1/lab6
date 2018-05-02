@@ -1,10 +1,10 @@
 <?php
 
 function getDatabaseConnection() {
-    $host = "localhost";
-    $username = "Iris";
-    $password = "cst336";
-    $dbname = "shopping_cart_cst336_sp_2018"; 
+    $host = "us-cdbr-iron-east-05.cleardb.net";
+    $username = "bc1d23cb79635b";
+    $password = "e4f61d06";
+    $dbname = "heroku_c8b34ae9cd193df"; 
     
     // Create connection
     $dbConn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
